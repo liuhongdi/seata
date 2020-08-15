@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seata.demo.mapper.orderdb.OrderMapper">
+	<select id="selectOneOrder" parameterType="long" resultType="com.seata.demo.pojo.Order">
+        select * from orderinfo where orderId=#{orderId}
+    </select>
+    <insert id="insertOneOrder" parameterType="com.seata.demo.pojo.Order" useGeneratedKeys="true" keyProperty="orderId" >
+		insert into orderinfo(orderSn,orderTime,orderStatus,userId,price)
+		values(
+			#{orderSn},now(),#{orderStatus},#{userId},#{price}
+		)
+     </insert>
+</mapper>
